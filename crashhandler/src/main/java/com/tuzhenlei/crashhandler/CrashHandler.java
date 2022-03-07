@@ -264,8 +264,9 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 			long timestamp = System.currentTimeMillis();
 			String time = formatter.format(new Date());
 			String fileName = "crash-" + time + "-" + timestamp + ".txt";
-			if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-				String path = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "crash/";
+			//if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+				//String path = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "crash/";
+			String path = mApplication.getExternalFilesDir(null).getAbsolutePath();
 				File dir = new File(path);
 				if (!dir.exists()) dir.mkdirs();
 				// 创建新的文件
@@ -276,7 +277,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 				// 答出log日志到控制台
 				LogcatCrashInfo(path + fileName);
 				fos.close();
-			}
+			//}
 			return fileName;
 		} catch (Exception e) {
 			e.printStackTrace();
